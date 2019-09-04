@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.example.demo.model.User" id="userBean"/>
+    <bean class="com.example.demo.DemoApplication" id="demoBean">
+        <property name="user" ref="userBean"/>
+    </bean>
+    <!-- JMS config  -->
+    <bean class="org.apache.camel.component.jms.JmsComponent" id="jms">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="vm://localhost"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean class="com.example.demo.FtpToJMSRoute" id="ftpToJmsRoute"/>
+    <bean class="com.example.demo.processor.DownloadLogger" id="downloadLogger"/>
+    <!--    <camelContext xmlns="http://camel.apache.org/schema/spring"></camelContext>-->
+  <!-- <camelContext id="camelContext-92223a8a-f68d-4db0-9373-68ac31727b66" xmlns="http://camel.apache.org/schema/spring">
+        <routeBuilder ref="ftpToJmsRoute"/>-->
+        <!--         <route>-->
+        <!--&lt;!&ndash;            <from uri="ftp://rider.com/orders?username=rider&amp;password=secret"/>&ndash;&gt;-->
+        <!--             <from uri="file:data/inbox?noop=true"/>-->
+        <!--             <to uri="file:data/outbox"/>-->
+        <!--&lt;!&ndash;             <process ref="downloadLogger"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;             <to uri="jms:incomingOrders"/>&ndash;&gt;-->
+        <!--         </route>-->
+  <!-- </camelContext> -->
+</beans>
