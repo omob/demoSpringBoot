@@ -8,15 +8,15 @@ import com.example.demo.model.User;
 @SpringBootApplication
 public class DemoApplication {
  
-	private User user;
-	
-	public void setUser(User user) {	
-		this.user = user;
-	}
+//	private User user;
+//	
+//	public void setUser(User user) {	
+//		this.user = user;
+//	}
 	
 	public static void main(String[] args) throws Exception {
 		
-		SpringApplication.run(CamelConfiguration.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 		
 //		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
@@ -40,8 +40,8 @@ public class DemoApplication {
 
 	}
 	
-	public void execute() {
-		this.user.sayHello();
-	}
+//	public void execute() {
+//		this.user.sayHello();
+//	}
 
 }
